@@ -1,12 +1,32 @@
 console.log("script started");
 
+//Variable to track current number
+let currentNum = 1;
+let level = 1;
+
 function start(){
     console.log("click");
     console.log(Math.random() * window.innerWidth);
+    startLevel();
+}
+
+function startLevel(){
+    currentNum = 1;
+    level = 1;
     setTimeout(createCircle, 500, 1);
     setTimeout(createCircle, 1000, 2);
     setTimeout(createCircle, 1500, 3);
-} 
+}
+
+function startLevel2(){
+    currentNum = 1;
+    level = 2;
+    setTimeout(createCircle, 500, 1);
+    setTimeout(createCircle, 1000, 2);
+    setTimeout(createCircle, 1500, 3);
+    setTimeout(createCircle, 2000, 4);
+    setTimeout(createCircle, 2500, 5);
+}
 
 function createCircle(num){
     //Create a div for the circles
@@ -43,6 +63,19 @@ function getRandomY(){
 
 //Checks for the right choice and removes it
 function checkForRemove(event){
-    let circle = event.target
+    let circle = event.target;
     console.log(circle.innerText);
+    if(circle.innerText == currentNum) {
+        circle.remove();
+        currentNum ++;
+        if (currentNum == 4 && level ==1) {
+            startLevel2();
+        }
+        else if (currentNum == 6 && level ==2){
+            startLevel3();
+        }
+    }
+
+
+    
 }
